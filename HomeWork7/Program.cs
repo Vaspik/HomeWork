@@ -79,18 +79,15 @@ void Show2dArray(int[,] array)
     Console.WriteLine();
 }
 
-void ShowNumFromTheIndex(int[,] array, int IndexNum, int SearchNum)
+void ShowNumFromTheIndex(int[,] array, int IndexNum, int ColumnsNum)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            if(IndexNum == i)
+            if(IndexNum == i && ColumnsNum == j)
             {
-                if(array[i,j] == SearchNum)
-                    Console.WriteLine($"Искомое число {SearchNum} в индексе {i} найдено");
-                else
-                    Console.WriteLine($"В этой строке, в этом индексе {i} числа {SearchNum} нет");
+                Console.Write($"Ваше число: {array[i,j]}.");
             }   
         }
     }       
@@ -100,15 +97,15 @@ Console.Write("Сколько будет строк?: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Сколько будет колонн?: ");
 int columns = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите индекс искомого число : ");
+Console.Write("Введите строку искомого число : ");
 int IndexNum = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите искомое число: ");
-int SearchNum = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите номер колонны искомого числа: ");
+int ColumnsNum = Convert.ToInt32(Console.ReadLine());
 
 
 int[,] myArray = CrateRandom2dArray(rows, columns);
 Show2dArray(myArray);
-ShowNumFromTheIndex(myArray, IndexNum, SearchNum);
+ShowNumFromTheIndex(myArray, IndexNum, ColumnsNum);
 
 */
 
@@ -118,7 +115,6 @@ ShowNumFromTheIndex(myArray, IndexNum, SearchNum);
 // 5 9 2 3
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
-
 
 
 int[,] CrateRandom2dArray(int rows, int columns)
