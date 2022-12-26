@@ -143,7 +143,7 @@ void Show2dArray(int[,] array)
     Console.WriteLine();
 }
 
-void ArithmeticMean(int[,] array)    // Я не понял как записать двумерный массив в одномерный, и в интеренете тоже не нашел (может плохо искал). Надеюсь void сойдёт(((
+void ArithmeticMean(int[,] array)    // У меня sum записывала 4 раза одно и то же значение и не понял из за чего. Надеюсь void сойдёт
 {
     double sum = 0;
     
