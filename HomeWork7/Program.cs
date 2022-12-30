@@ -144,10 +144,10 @@ void Show2dArray(int[,] array)
     Console.WriteLine();
 }
 
-double[] ArithmeticMean(int[,] array, int rows, int columns)
+void ArithmeticMean(int[,] array)    // У меня sum записывала 4 раза одно и то же значение и не понял из за чего. Надеюсь void сойдёт
 {
     int ind = 0;
-    double[] sumArr = new double[columns];
+    double[] sumArr = new double[array.GetLength(1)];
     double sum = 0;
 
     for (int j = 0; j < array.GetLength(1); j++)
@@ -157,14 +157,11 @@ double[] ArithmeticMean(int[,] array, int rows, int columns)
             for (ind = 0; ind < array.GetLength(1); ind++)
             {
                 sum = array[i,j];
-                // Console.WriteLine(sum);
                 
                 sumArr[ind] = sum / array.GetLength(1);
             }
         }
-    }
-    return sumArr;
-    
+    }  
 }
 
 void ShowArray(double[] array)
@@ -183,5 +180,4 @@ int columns = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray = CrateRandom2dArray(rows, columns);
 Show2dArray(myArray);
-double[] result = ArithmeticMean(myArray, rows, columns);
-ShowArray(result);
+ArithmeticMean(myArray);
