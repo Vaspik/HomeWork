@@ -23,7 +23,7 @@ void Show2dArray(double[,] array)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write(array[i,j] + "\t");
+            Console.Write(Math.Round(array[i,j], 2) + "\t");
         }
         Console.WriteLine();
     }
@@ -117,6 +117,7 @@ ShowNumFromTheIndex(myArray, IndexNum, ColumnsNum);
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
 
+
 int[,] CrateRandom2dArray(int rows, int columns)
 {
     int[,] array = new int[rows, columns];
@@ -124,7 +125,7 @@ int[,] CrateRandom2dArray(int rows, int columns)
     {
         for (int j = 0; j < columns; j++)
         {
-            array[i,j] = new Random().Next(1, 11);
+            array[i, j] = new Random().Next(1, 11);
         }
     }
     return array;
@@ -136,27 +137,44 @@ void Show2dArray(int[,] array)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write(array[i,j] + "\t");
+            Console.Write(array[i, j] + "\t");
         }
         Console.WriteLine();
     }
     Console.WriteLine();
 }
 
-void ArithmeticMean(int[,] array)    // Я не понял как записать двумерный массив в одномерный, и в интеренете тоже не нашел (может плохо искал). Надеюсь void сойдёт(((
+double[] ArithmeticMean(int[,] array, int rows, int columns)
 {
+    int ind = 0;
+    double[] sumArr = new double[columns];
     double sum = 0;
-    
+
     for (int j = 0; j < array.GetLength(1); j++)
     {
         for (int i = 0; i < array.GetLength(0); i++)
         {
-            sum += array[i,j];
+            for (ind = 0; ind < array.GetLength(1); ind++)
+            {
+                sum = array[i,j];
+                // Console.WriteLine(sum);
+                
+                sumArr[ind] = sum / array.GetLength(1);
+            }
         }
-        Console.Write($"{ sum / array.GetLength(0) + "\t"}");  
-    }   
+    }
+    return sumArr;
+    
 }
 
+void ShowArray(double[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(Math.Round(array[i], 2) + "\t");
+    }
+    Console.WriteLine();
+}
 
 Console.Write("Сколько будет строк?: ");
 int rows = Convert.ToInt32(Console.ReadLine());
@@ -165,4 +183,5 @@ int columns = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray = CrateRandom2dArray(rows, columns);
 Show2dArray(myArray);
-ArithmeticMean(myArray);
+double[] result = ArithmeticMean(myArray, rows, columns);
+ShowArray(result);
